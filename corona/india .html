@@ -19,7 +19,7 @@
  
   
 </head>
-<body >
+<body onload="fetch()" >
 
 
 	<!-- **************************nav bar started -->
@@ -34,28 +34,28 @@
   <div class=" menu collapse navbar-collapse" id="navbarSupportedContent" style="text-transform: capitalize; font-size: 1.2rem;font-weight: bold;margin-right: 2px; hover: background-color:white;">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="E:\corona\index.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php">about corona</a>
+        <a class="nav-link" href="E:\corona\index.html">about corona</a>
       </li>
       </li>
       <li class="nav-item" >
-        <a class="nav-link " href="index.php">world corona update</a>
+        <a class="nav-link " href="E:\corona\index.html">world corona update</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php">preventive measure</a>
+        <a class="nav-link" href="E:\corona\index.html">preventive measure</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#index.php">symptoms</a>
+        <a class="nav-link" href="#E:\corona\index.html">symptoms</a>
       </li>
       
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link " href="index.php">helpline</a>
-      </li>
+      </li> -->
     </ul>
-   <
+   
   </div>
 </nav>
 	</header>
@@ -125,12 +125,58 @@
                 <div class="tab-pane fade active show table-responsive table-fixed" id="home" role="tabpanel" aria-labelledby="home-tab"><br><br>
 
 
-                  <?php
-$data = file_get_contents('https://api.covid19india.org/data.json');
-$coronadata = json_decode($data, true);
+                  
+  <script type="text/javascript">
+   fetch('https://api.covid19india.org/data.json')
+   .then((api) => {
+    // console.log(apidata);
+    return api.json();
+   })
+   .then((actual) => {
+ 
+    const Second = (actual.statewise[0].confirmed);
+
+    document.getElementById('one').innerHTML= Second;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
+
+ <script type="text/javascript">
+   fetch('https://api.covid19india.org/data.json')
+   .then((api) => {
+    // console.log(apidata);
+    return api.json();
+   })
+   .then((actual) => {
+ 
+    const Second = (actual.statewise[0].deaths);
+
+    document.getElementById('two').innerHTML= Second;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
 
 
-  ?>
+ <script type="text/javascript">
+   fetch('https://api.covid19india.org/data.json')
+   .then((api) => {
+    // console.log(apidata);
+    return api.json();
+   })
+   .then((actual) => {
+ 
+    const Second = (actual.statewise[0].recovered);
+
+    document.getElementById('three').innerHTML= Second;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
 
   <div class="container" style="text-align: center;font-weight: bold;">
   <div class="row">
@@ -138,7 +184,7 @@ $coronadata = json_decode($data, true);
      <div class="card">
       <div class="card-body" style="margin-right: 2px;border-bottom:solid 5px #ffff00;">
         <h5 class="card-header">CORONAVIRUS TOTAL <br>CASES</h5><br>
-        <h2 class="card-text"><?php echo $coronadata['statewise'][0]['confirmed'];  ?></h2>
+        <h2 class="card-text" id="one"></h2>
     </div>
 </div>
 </div>
@@ -147,7 +193,7 @@ $coronadata = json_decode($data, true);
       <div class="card">
       <div class="card-body" style="border-bottom: solid 5px #ff3300;">
         <h5 class="card-header">CORONAVIRUS TOTAL DEATHS</h5><br>
-        <h2 class="card-text"><?php echo $coronadata['statewise'][0]['deaths'];  ?></h2>
+        <h2 class="card-text" id="two"></h2>
         
       </div>
       </div>
@@ -158,7 +204,7 @@ $coronadata = json_decode($data, true);
       <div class="card">
       <div class="card-body" style="border-bottom: solid 5px #00ff00;">
         <h5 class="card-header">CORONAVIRUS TOTAL RECOVERED</h5><br>
-        <h2 class="card-text"><?php echo $coronadata['statewise'][0]['recovered'];  ?></h2>
+        <h2 class="card-text" id="three"></h2>
         
       </div>
   </div>
@@ -169,11 +215,11 @@ $coronadata = json_decode($data, true);
 
                  
 
-                	<table class=" css-serial table table-striped table-bordered " style="position: sticky;" id="table" >
+                	<table class=" css-serial table table-striped table-bordered " style="position: sticky;" id="tbval" >
 				
 				<tr style="position: sticky;"  >
-					<th >SR.NO</th>
-				 <th>State</th>
+         
+									 <th>State</th>
 				  <th>Statecode</th>
 				 <th>Last Updated</th>
                  <th>Active</th>
@@ -181,38 +227,78 @@ $coronadata = json_decode($data, true);
                  <th>Deaths</th>
                  <th>Recovered</th>
                  </tr>
+               </table>
 
-            <?php
+               <script >
+function fetch(){
+      $.get("https://api.covid19india.org/data.json",
 
+             function (data){
+             // console.log(data['Countries'].length);
+             var tbval = document.getElementById('tbval');
 
-            $data = file_get_contents('https://api.covid19india.org/data.json');
-            $coronalive = json_decode($data, true);
+             for(var i=1; i<(data['statewise'].length); i++){
+              var x = tbval.insertRow();
+              x.insertCell(0);
 
-            $statescount = count($coronalive['statewise']);
+              tbval.rows[i].cells[0].innerHTML = data['statewise'][i-1]['state'];
+              // tbval.rows[i].cells[0].style.background = '#e60000';
+              // tbval.rows[i].cells[0].style.color='#fff';
 
-             $i=1;
-             while($i < $statescount){
+              x.insertCell(1);
 
-             	?>
-
-             	<tr>
-             		<td style="width: 9px;" ></td>
-                    <td><?php echo $coronalive['statewise'][$i]['state']; ?></td>
-             		<td><?php echo $coronalive['statewise'][$i]['statecode']; ?></td>
-             		<td><?php echo $coronalive['statewise'][$i]['lastupdatedtime']; ?></td>
-             	    <td><?php echo $coronalive['statewise'][$i]['active']; ?></td>
-             		<td><?php echo $coronalive['statewise'][$i]['confirmed'];  ?></td>
-             		<td><?php echo $coronalive['statewise'][$i]['deaths']; ?></td>
-             		<td><?php echo $coronalive['statewise'][$i]['recovered']; ?></td>
-             	</tr>
+              tbval.rows[i].cells[1].innerHTML = data['statewise'][i-1]['statecode'];
+              // tbval.rows[i].cells[1].style.background = '#ff6600';
               
 
-              <?php
-             	$i++;
+              x.insertCell(2);
+
+              tbval.rows[i].cells[2].innerHTML = data['statewise'][i-1]['lastupdatedtime'];
+              // tbval.rows[i].cells[2].style.background = '#00e600';
+              
+
+              x.insertCell(3);
+
+              tbval.rows[i].cells[3].innerHTML = data['statewise'][i-1]['active'];
+              // tbval.rows[i].cells[3].style.background = '#0099ff';
+              
+
+              x.insertCell(4);
+
+              tbval.rows[i].cells[4].innerHTML = data['statewise'][i-1]['confirmed'];
+              // tbval.rows[i].cells[4].style.background = '#ff33cc';
+              
+
+              x.insertCell(5);
+
+              tbval.rows[i].cells[5].innerHTML = data['statewise'][i-1]['deaths'];
+              // tbval.rows[i].cells[5].style.background = '#00b3b3';
+              
+
+              x.insertCell(6);
+
+              tbval.rows[i].cells[6].innerHTML = data['statewise'][i-1]['recovered'];
              
-	             }
-             ?>
-         </table>
+             
+
+             
+              // tbval.rows[i].cells[6].style.background = '#00cc99';
+              
+               // x.insertCell(7);
+
+              // tbval.rows[i].cells[7].innerHTML = data['Countries'][i-1]['Date'];
+              // tbval.rows[i].cells[7].style.background = '#7a4a91';
+              
+
+              
+           }
+           }
+
+      );
+
+  
+}
+</script>
 
 
 
@@ -237,16 +323,6 @@ $coronadata = json_decode($data, true);
 
 
 
-<style>
-	.css-serial {
-  counter-reset: serial-number;  /* Set the serial number counter to 0 */
-}
-
-.css-serial td:first-child:before {
-  counter-increment: serial-number;  /* Increment the serial number counter */
-  content: counter(serial-number);  /* Display the counter */
-}
-</style>
 
 
 
@@ -297,10 +373,121 @@ function topFunction() {
 }
 
 </script>
-<footer>
-  <h5 style="text-transform: capitalize; font-weight: bold; text-align: center; background-color: #003333;color: #ffff">&#169 copyright corona</h5>
+<footer class="page-footer font-small indigo" style="background-color: #19334d;color: white;">
+
+  <!-- Footer Links -->
+  <div class="container">
+
+    <!-- Grid row-->
+    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="index.html">About us</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="index.html">World Update</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="index.html">Help</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="index.html">Contact</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+    <hr class="rgba-white-light" style="margin: 0 15%;">
+
+    <!-- Grid row-->
+    <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+
+      <!-- Grid column -->
+      <div class="col-md-8 col-12 mt-5">
+        <p style="line-height: 1.7rem; text-transform: capitalize;">
+          We are Just begginer and we are made this website to give coronadata live as much as possible 
+        </p>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+    <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+
+    <!-- Grid row-->
+    <div class="row pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-12">
+
+        <div class="mb-5 flex-center" style="text-align: center;">
+
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <i class="fa fa-facebook-f fa-lg white-text mr-4"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <i class="fa fa-twitter fa-lg white-text mr-4"> </i>
+          </a>
+          <!-- Google +-->
+          
+          <!--Linkedin -->
+          <a class="li-ic">
+            <i class="fa fa-linkedin-in fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <i class="fa fa-github fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Pinterest-->
+          <a class="pin-ic">
+            <i class="fa fa-pinterest fa-lg white-text"> </i>
+          </a>
+
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3" style="background-color: #336699;">© 2020 Copyright:
+    <a >Corona Update</a>
+  </div>
+  <!-- Copyright -->
 
 </footer>
+<!-- Footer -->
+
+
 
 
 
@@ -313,4 +500,4 @@ function topFunction() {
 
 
 </body>
-
+</html>

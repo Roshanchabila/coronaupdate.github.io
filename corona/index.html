@@ -68,7 +68,7 @@ a:active {
       </li>
       </li>
       <li class="nav-item" >
-        <a class="nav-link " href="india.php">india corona update</a>
+        <a class="nav-link " href="E:\corona\india .html">india corona update</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#preventive">preventive measure</a>
@@ -145,11 +145,142 @@ a:active {
     </div>
   </section><br><br>
 
-  <?php
 
-$data = file_get_contents('https://corona.lmao.ninja/v2/all');
-$coronadata = json_decode($data,true);
- ?>
+
+ <script type="text/javascript">
+   fetch('https://corona.lmao.ninja/v2/all')
+   .then((apidata) => {
+    // console.log(apidata);
+    return apidata.json();
+   })
+   .then((actualdata) => {
+ 
+    const ok = (actualdata.cases);
+
+    document.getElementById('apiindia').innerHTML= ok;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
+
+<script type="text/javascript">
+   fetch('https://corona.lmao.ninja/v2/all')
+   .then((api) => {
+    // console.log(apidata);
+    return api.json();
+   })
+   .then((actual) => {
+ 
+    const Second = (actual.deaths);
+
+    document.getElementById('do').innerHTML= Second;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
+
+<script type="text/javascript">
+   fetch('https://corona.lmao.ninja/v2/all')
+   .then((data) => {
+    // console.log(apidata);
+    return data.json();
+   })
+   .then((actdata) => {
+ 
+    const third = (actdata.recovered);
+
+    document.getElementById('hii').innerHTML= third;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
+
+
+ <script type="text/javascript">
+   fetch('https://corona.lmao.ninja/v2/all')
+   .then((apidata) => {
+    // console.log(apidata);
+    return apidata.json();
+   })
+   .then((actualdata) => {
+ 
+    const ok = (actualdata.todayCases);
+
+    document.getElementById('one').innerHTML= ok;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
+
+
+
+
+
+ <script type="text/javascript">
+   fetch('https://corona.lmao.ninja/v2/all')
+   .then((apidata) => {
+    // console.log(apidata);
+    return apidata.json();
+   })
+   .then((actualdata) => {
+ 
+    const ok = (actualdata.todayDeaths);
+
+    document.getElementById('two').innerHTML= ok;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
+
+
+
+
+
+ <script type="text/javascript">
+   fetch('https://corona.lmao.ninja/v2/all')
+   .then((apidata) => {
+    // console.log(apidata);
+    return apidata.json();
+   })
+   .then((actualdata) => {
+ 
+    const ok = (actualdata.active);
+
+    document.getElementById('three').innerHTML= ok;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
+
+
+
+
+
+ <script type="text/javascript">
+   fetch('https://corona.lmao.ninja/v2/all')
+   .then((apidata) => {
+    // console.log(apidata);
+    return apidata.json();
+   })
+   .then((actualdata) => {
+ 
+    const fo = (actualdata.critical);
+
+    document.getElementById('four').innerHTML= fo;
+   })
+   .catch((error)=>{
+    console.log('The Error: ${error}');
+   });
+ </script>
+
+
+
 
 
   <div class="container" style="text-align: center;font-weight: bold;">
@@ -158,19 +289,19 @@ $coronadata = json_decode($data,true);
      <div class="card">
       <div class="card-body" style="margin-right: 2px;border-bottom:solid 5px #ffff00;">
         <h5 class="card-header">CORONAVIRUS TOTAL <br>CASES</h5><br>
-        <h2 class="card-text counter"><?php echo $coronadata['cases'];  ?></h2>
+        <h2 class="card-text " id="apiindia" ></h2>
     </div>
-</div>
+</div><br><br>
 </div>
 
     <div class="col-sm">
       <div class="card">
       <div class="card-body" style="border-bottom: solid 5px #ff3300;">
         <h5 class="card-header">CORONAVIRUS TOTAL DEATHS</h5><br>
-                <h2 class="card-text counter"><?php echo $coronadata['deaths'];  ?></h2>
+                <h2 class="card-text counter" id="do"></h2>
         
       </div>
-      </div>
+      </div><br><br>
 
     </div>
 
@@ -178,11 +309,11 @@ $coronadata = json_decode($data,true);
       <div class="card">
       <div class="card-body" style="border-bottom: solid 5px #00ff00;">
         <h5 class="card-header">CORONAVIRUS TOTAL RECOVERED</h5><br>
-              <h2 class="card-text counter" ><?php echo $coronadata['recovered'];  ?></h2>
+              <h2 class="card-text counter" id="hii" ><?php echo $coronadata['recovered'];  ?></h2>
                 
         
       </div>
-  </div>
+  </div><br><br>
     </div>
   
 </div> 
@@ -197,20 +328,20 @@ $coronadata = json_decode($data,true);
       <div class="card" style="">
        <div class="card-body" style="margin-right: 2px;border-bottom:solid 5px #ffff00;" >
         <h5 class="card-header">CORONAVIRUS NEW<br> CASES</h5><br>
-        <h2 class="card-text counter"><?php echo $coronadata['todayCases'];  ?></h2>
+        <h2 class="card-text counter" id="one"></h2>
         
       </div>
-      </div>
+      </div><br><br>
       </div>
     <div class="col-sm" >
       <div class="card
       ">
       <div class="card-body" style="border-bottom: solid 5px #ff3300;">
         <h5 class="card-header">CORONAVIRUS NEW <br>DEATHS</h5><br>
-        <h2 class="card-text counter"><?php echo $coronadata['todayDeaths'];  ?></h2>
-    </div>
+        <h2 class="card-text counter" id="two"></h2>
     </div>
     </div><br><br>
+    </div>
 
     </div>
     </div><br><br>
@@ -223,18 +354,18 @@ $coronadata = json_decode($data,true);
       ">
       <div class="card-body" style="border-bottom: solid 5px #ff3300;">
         <h5 class="card-header">CORONAVIRUS ACTIVE <br>CASES</h5><br>
-        <h2 class="card-text counter"><?php echo $coronadata['active'];  ?></h2>
+        <h2 class="card-text counter" id="three"></h2>
     </div>
-    </div>
+    </div><br><br>
     </div>
       <div class="col" >
       <div class="card
       ">
       <div class="card-body" style="border-bottom: solid 5px #ff3300;">
         <h5 class="card-header">CORONAVIRUS CRITICAL <br>CASES</h5><br>
-        <h2 class="card-text counter"><?php echo $coronadata['critical'];  ?></h2>
+        <h2 class="card-text counter" id="four"></h2>
     </div>
-    </div>
+    </div><br><br>
     </div>
   
     
@@ -405,110 +536,8 @@ At this time, there are no specific vaccines or treatments for COVID-19. However
     
   </div>
 </section><hr><br><br><br>
-<section style="background-color: #ebebe0">
-<h3 style="text-transform: uppercase; text-align: center; padding-top: 3rem; ">To get first update please register</h3><br>
 
-<section style="margin-left: 500px">
-  <form class="needs-validation" novalidate action="" method="POST">
-  <div class="form-row">
-    <div class="col-md-4" style="margin-left: 1rem;">
-    
-      <label for="validationCustom01">Username</label>
-      <input type="text" class="form-control" id="validationCustom01" name="Username" placeholder="Username" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-      </div>
-    </div><br>
-    
-    <div class="col-md-4 mb-3">
-      <label for="validationCustomUsername">Email</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend">@</span>
-        </div>
-        <input type="email" class="form-control" name="Email" id="validationCustomUsername" placeholder="Email" aria-describedby="inputGroupPrepend" required>
-        <div class="invalid-feedback">
-          Please choose a email.
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom02">Password</label>
-      <input type="password" class="form-control" id="validationCustom02" name="Password" placeholder="password" required >
-      <div class="valid-feedback">
-        Please choose a password
-      </div>
-    </div>
-         
-        </div>
-      </div>
-    </div>
-  
-  <!-- <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationCustom03">City</label>
-      <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
-      </div>
-    </div><br>
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom04">State</label>
-      <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
-      <div class="invalid-feedback">
-        Please provide a valid state.
-      </div>
-    </div><br>
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom05">Zip</label>
-      <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
-      </div>
-    </div><br>
-  </div><br> -->
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
-        Agree to terms and conditions
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
-    </div>
-  </div><br>
-  <button class="btn btn-primary alert" type="submit" name="submit">Submit form</button>
-<!--   <a href="#submit" class="btn btn-primary btn-lg active" role="button" >Submit form</a>
-<a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Link</a> -->
-</form>
 
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
-</section>
-</section>
-
- 
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 <script >
 function fetch(){
       $.get("https://api.covid19api.com/summary",
@@ -576,10 +605,7 @@ function fetch(){
 }
 </script>
 
-<footer>
-  <h5 style="text-transform: capitalize; font-weight: bold; text-align: center; background-color: #003333;color: #ffff">&#169 copyright </h5>
 
-</footer>
 
 
 <style >
@@ -697,6 +723,122 @@ $(document).ready(function(){
 </style>
 
 
+<!-- Footer -->
+<footer class="page-footer font-small indigo" style="background-color: #19334d;color: white;">
+
+  <!-- Footer Links -->
+  <div class="container">
+
+    <!-- Grid row-->
+    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">About us</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="india .html">India Update</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Help</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Contact</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+    <hr class="rgba-white-light" style="margin: 0 15%;">
+
+    <!-- Grid row-->
+    <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+
+      <!-- Grid column -->
+      <div class="col-md-8 col-12 mt-5">
+        <p style="line-height: 1.7rem; text-transform: capitalize;">
+          We are Just begginer and we are made this website to give coronadata live as much as possible 
+        </p>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+    <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+
+    <!-- Grid row-->
+    <div class="row pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-12">
+
+        <div class="mb-5 flex-center" style="text-align: center;">
+
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <i class="fa fa-facebook-f fa-lg white-text mr-4"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <i class="fa fa-twitter fa-lg white-text mr-4"> </i>
+          </a>
+          <!-- Google +-->
+          
+          <!--Linkedin -->
+          <a class="li-ic">
+            <i class="fa fa-linkedin-in fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <i class="fa fa-github fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Pinterest-->
+          <a class="pin-ic">
+            <i class="fa fa-pinterest fa-lg white-text"> </i>
+          </a>
+
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3" style="background-color: #336699;">© 2020 Copyright:
+    <a >Corona Update</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
 
 
 
@@ -713,6 +855,8 @@ $(document).ready(function(){
 
 
 
+
+
  
 </body>
 </html>
@@ -721,39 +865,7 @@ $(document).ready(function(){
       
 
 
-<?php
 
-
-include 'coronaapi.php';
-
-if (isset($_POST['submit'])) {
-  $Username = $_POST['Username'];
-  $Email = $_POST['Email'];
-  $Password = $_POST['Password'];
-
-
-
-  $insertquery = "  insert into  coronacases( Username,Email,Password) values('$Username','$Email',
-  '$Password')";
-
-  $query = mysqli_query($con,$insertquery);
-
-  if ($query) {
-    ?>
-     <script >
-      alert("connection successful");
-     </script>
-     <?php
-        }else{
-               ?>
-               <script >
-                alert("No connection");
-               </script>
-          <?php
-        }
-
-        }
-       ?>
 
 
 
